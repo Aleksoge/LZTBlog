@@ -1,5 +1,5 @@
-1<?php
-require_once __DIR__.'/app/routeController.php';
+<?php
+require_once __DIR__.'/routeController.php';
 
 get('/', 'views/index.php');
 get('/login', 'views/login');
