@@ -2,9 +2,9 @@ version: '3.8'
 
 services:
   api:
-    image: php:8-apache
+    build: ./api
     volumes:
-      - .:/var/www/html
+      - ./api/:/var/www/html
     ports:
       - "8000:80"
 
