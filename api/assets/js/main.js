@@ -28,3 +28,33 @@ function closeOnClick() {
   hamb.classList.remove("active");
   body.classList.remove("noscroll");
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  let dropdownLink = document.querySelector(".dropdown > a");
+  
+  if (dropdownLink) {
+      dropdownLink.addEventListener("click", function(e) {
+          e.preventDefault();
+          let submenu = this.nextElementSibling;
+          if (submenu) {
+              if (submenu.style.display === "none" || submenu.style.display === "") {
+                  submenu.style.display = "block";
+              } else {
+                  submenu.style.display = "none";
+              }
+          }
+      });
+  }
+
+  // Закрыть подменю, если клик происходит вне меню
+  document.addEventListener("click", function(e) {
+      let dropdown = document.querySelector(".dropdown");
+      let isClickInsideDropdown = dropdown.contains(e.target);
+      if (!isClickInsideDropdown) {
+          let submenu = document.querySelector(".sub-menu");
+          if (submenu) {
+              submenu.style.display = "none";
+          }
+      }
+  });
+});
