@@ -4,8 +4,9 @@
             <h2>Регистрация</h2>
         </div>
         <div class="card-body">
-            <form action="#" id="registerForm">
-            <div class="form-field">
+            <form action="#" method="POST" id="registerForm">
+                <?php set_csrf(); ?>
+                <div class="form-field">
                     <label for="username">Имя пользователя</label>
                     <input type="text" id="username" name="username" class="text-field" required>
                 </div>
@@ -29,3 +30,8 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('registerForm').addEventListener('submit', function(event) {
+        sendFetchEvent(event, '/api/register', '/');
+    });
+</script>

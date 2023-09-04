@@ -4,7 +4,8 @@
             <h2>Вход</h2>
         </div>
         <div class="card-body">
-            <form action="#" id="loginForm">
+            <form action="#" method="POST" id="loginForm">
+                <?php set_csrf(); ?>
                 <div class="form-field">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" class="text-field" required>
@@ -23,3 +24,8 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        sendFetchEvent(event, '/api/login', '/');
+    });
+</script>

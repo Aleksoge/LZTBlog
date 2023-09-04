@@ -37,7 +37,7 @@
                 <?php if(isset($_SESSION['user'])): ?>  
                 <li class="dropdown"><a href="#" title="<?= $_SESSION['user']['email'] ?>"><?= $_SESSION['user']['username'] ?></a>
                     <ul class="sub-menu">
-                        <?php if($authorizedUser->role == "admin") { ?>
+                        <?php if($authorized_user->role == "admin") { ?>
                         <li><a href="/admin">Панель</a></li>
                         <?php } ?>
                         <li><a href="/logout">Выход</a></li>

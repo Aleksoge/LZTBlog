@@ -4,71 +4,92 @@ require __DIR__.'/app/appController.php';
 require __DIR__.'/app/userController.php';
 require __DIR__.'/app/adminController.php';
 
-function front($route, $path_to_include, $front_type)
+function front($route, $path_to_include, $front_type = null, $roles_allowed = null)
 {
 	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-		route($route, $path_to_include, $front_type);
+		route($route, $path_to_include, $roles_allowed, $front_type);
 	}
 }
-function get($route, $path_to_include)
+function get($route, $path_to_include, $roles_allowed = null)
 {
 	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-		route($route, $path_to_include);
+		route($route, $path_to_include, $roles_allowed);
 	}
 }
-function post($route, $path_to_include)
+function post($route, $path_to_include, $roles_allowed = null)
 {
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		route($route, $path_to_include);
+		route($route, $path_to_include, $roles_allowed);
 	}
 }
-function put($route, $path_to_include)
+function put($route, $path_to_include, $roles_allowed = null)
 {
 	if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
-		route($route, $path_to_include);
+		route($route, $path_to_include, $roles_allowed);
 	}
 }
-function patch($route, $path_to_include)
+function patch($route, $path_to_include, $roles_allowed = null)
 {
 	if ($_SERVER['REQUEST_METHOD'] == 'PATCH') {
-		route($route, $path_to_include);
+		route($route, $path_to_include, $roles_allowed);
 	}
 }
-function delete($route, $path_to_include)
+function delete($route, $path_to_include, $roles_allowed = null)
 {
 	if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
-		route($route, $path_to_include);
+		route($route, $path_to_include, $roles_allowed);
 	}
 }
-function any($route, $path_to_include)
+function any($route, $path_to_include, $roles_allowed = null)
 {
-	route($route, $path_to_include);
+	route($route, $path_to_include, $roles_allowed);
 }
 
-function route($route, $path_to_include, $front_type)
-{
+function checkAccess($authorized_user, $roles_allowed = null) {
+	if (!$roles_allowed) {
+		return true;
+	}
+	if($roles_allowed == 'guest') {
+		if (!isset($_SESSION['user'])) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	if (!isset($_SESSION['user'])) {
+		return false;
+	}
+	return in_array($authorized_user->role, $roles_allowed);
+}
+
+function route($route, $path_to_include, $roles_allowed = null, $front_type = null) {
 	$global_settings = R::load('settings', 1);
 	if(!isset($_SESSION)) { session_start(); }
+	$authorized_user = null;
 	if(!isset($_SESSION['user'])) {
 		if(isset($_COOKIE['remember_token'])) {
-			$authorizedUser = R::findOne('users', 'remember_token = ?', [$_COOKIE['remember_token']]);
-			if ($authorizedUser) {
-				if($authorizedUser->confirmed > 0) { 
+			$authorized_user = R::findOne('users', 'remember_token = ?', [$_COOKIE['remember_token']]);
+			if ($authorized_user) {
+				if($authorized_user->confirmed > 0) { 
 					$_SESSION['user'] = [
-						"username" => $authorizedUser->username,
-						"email" => $authorizedUser->email,
-						"avatar" => $authorizedUser->avatar
+						"username" => $authorized_user->username,
+						"email" => $authorized_user->email,
+						"avatar" => $authorized_user->avatar
 					];
 				}
 			}
 		}
 	} else {
-		$authorizedUser = R::findOne('users', 'username = ?', [$_SESSION['user']['username']]);
-		if($authorizedUser->confirmed < 1) { 
+		$authorized_user = R::findOne('users', 'username = ?', [$_SESSION['user']['username']]);
+		if($authorized_user->confirmed < 1) { 
 			unset($_SESSION['user']);
 			unset($_COOKIE['remember_token']);
 			setcookie('remember_token', '', -1, '/'); 
 		}
+	}
+	if(!checkAccess($authorized_user, $roles_allowed)) {
+		include_once __DIR__ . "/views/404.php"; 
+		exit();
 	}
 	$callback = $path_to_include;
 	if (!is_callable($callback)) {

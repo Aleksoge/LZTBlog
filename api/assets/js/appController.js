@@ -12,7 +12,9 @@ function sendFetchEvent(event, fetchUrl, redirectUrl) {
     .then(data => {
         if (data.success) {
             if(redirectUrl != "#") {
-                window.location.href = redirectUrl; 
+                window.location.href = redirectUrl;
+                document.getElementById("alertBadge").innerHTML = data.message;
+                showAlert(); 
             }
         } else {
             document.getElementById("alertBadge").innerHTML = data.message + '<br>';
@@ -23,19 +25,12 @@ function sendFetchEvent(event, fetchUrl, redirectUrl) {
                     document.getElementsByName(key)[0].classList.toggle("is-invalid");
                 }, 2000);
             }
+            showAlert();
         }
     })
     .catch(error => {
         document.getElementById("alertBadge").innerText = "Ошибка при отправке запроса.";
+        showAlert();
     });
 }
-
-
-document.getElementById('loginForm').addEventListener('submit', function(event) {
-    sendFetchEvent(event, '/api/login', '/');
-});
-
-document.getElementById('registerForm').addEventListener('submit', function(event) {
-    sendFetchEvent(event, '/api/register', '/');
-});
 

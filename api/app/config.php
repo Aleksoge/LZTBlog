@@ -21,3 +21,5 @@ R::ext('dpns', function( $type ){
 });
 
 R::close();
+
+if(!isset($_SESSION)) { session_start(); }

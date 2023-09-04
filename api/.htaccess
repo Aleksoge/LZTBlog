@@ -1,3 +1,3 @@
 RewriteEngine On
-RewriteCond %{REQUEST_URI}  !(\.svg|\.jpg|\.png|\.gif|\.jpeg|\.zip|\.css|\.map|\.webp|\.js|\.pdf)$
+RewriteCond %{REQUEST_URI}  !(\.svg|\.jpg|\.png|\.gif|\.jpeg|\.zip|\.css|\.map|\.webp|\.js|\.webmanifest|\.manifest|\.json|\.pdf)$
 RewriteRule (.*) appRoute.php [QSA,L]
