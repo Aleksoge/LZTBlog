@@ -1,10 +1,10 @@
 <div class="container">
     <div class="card card-form">
         <div class="card-header">
-            <h2>Авторизация</h2>
+            <h2>Вход</h2>
         </div>
         <div class="card-body">
-            <form action="#">
+            <form action="#" id="loginForm">
                 <div class="form-field">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" class="text-field" required>
@@ -18,7 +18,7 @@
         </div>
         <div class="card-footer">
                 <div class="register-link">
-                    <p>Нет аккаунта? <a href="/register"> Зарегистрироваться</a></p>
+                    <p>Нет аккаунта? <a href="/register">Зарегистрироваться</a></p>
                 </div>
         </div>
     </div>

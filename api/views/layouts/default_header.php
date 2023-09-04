@@ -23,7 +23,7 @@
     <nav class="navbar">
         <div class="container">
             <div class="navbar__wrap">
-            <a href="#" class="logo" id="logo"><img src="/assets/img/logo.svg" height="24" alt="">Новости</a>
+            <a href="/" class="logo" id="logo"><img src="/assets/img/logo.svg" height="24" alt="">Новости</a>
             <div class="hamb">
                 <div class="hamb__field" id="hamb">
                 <span class="bar"></span>
@@ -33,7 +33,7 @@
             </div>
             <ul class="menu" id="menu">
                 <li><a href="/">Главная</a></li>
-                <li><a href="https://zelenka.guru/threads/1076587/">Форум</a></li>
+                <li><a href="https://zelenka.guru/threads/1076587/" target="_blank">Форум</a></li>
                 <?php if(isset($_SESSION['user'])): ?>  
                 <li class="dropdown"><a href="#" title="<?= $_SESSION['user']['email'] ?>"><?= $_SESSION['user']['username'] ?></a>
                     <ul class="sub-menu">
