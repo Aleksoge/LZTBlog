@@ -16,13 +16,6 @@ if ( !R::testconnection() )
 		exit ('DB config error.');
 }
 
-try {
-    R::count('some_table'); 
-} catch (Exception $e) {
-    exit('DB error: ' . $e->getMessage());
-}
-
-
 R::ext('dpns', function( $type ){
     return R::getRedBean()->dispense( $type );
 });
