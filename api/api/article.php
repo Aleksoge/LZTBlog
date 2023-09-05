@@ -21,6 +21,10 @@ if (isset($_FILES['img_load']) && $_FILES['img_load']['error'] === UPLOAD_ERR_OK
     }
 }
 
+if (strlen($imgPath) < 1) {
+    $errors['img_path'] = "Картинка не может отсутствовать.";
+}
+
 if (strlen(trim($data['shortdescription'])) < 1) {
     $errors['shortdescription'] = "Краткое содержание статьи не может быть пустым.";
 }

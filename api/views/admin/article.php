@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-field">
                     <label for="author">Имя автора статьи</label>
-                    <input type="text" id="author" name="author" class="text-field">
+                    <input type="text" id="author" name="author" class="text-field" required>
                 </div>
                 <div class="form-field">
                     <label>Путь до картинки</label>
@@ -172,7 +172,7 @@
                 id: 'my_editor'
             }
         });
-    }, 100);
+    }, 400);
 
 })();
 </script>

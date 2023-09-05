@@ -170,6 +170,12 @@ p {
   color: var(--link-secondary-color);
 }
 
+textarea {
+  resize: vertical;
+  min-height: 80px;
+  max-height: 400px;
+}
+
 .dropdown {
   position: relative;
   display: inline-block;
@@ -223,7 +229,7 @@ p {
 }
 
 .card-body {
-  padding: 1.8rem 1.4rem;
+  padding: 2rem 1.4rem;
 }
 
 .card-footer {
@@ -310,9 +316,9 @@ div#alertBadge {
   margin: auto;
   width: 90%;
   max-width: 400px;
-  background: #eae6ff33;
+  background: var(--main-color);
   border: 1px solid var(--secondary-color);
-  color: var(--secondary-color);
+  color: #FFF;
   font-size: 14px;
   padding: 0.8rem;
   border-radius: var(--inp-border-radius);
@@ -649,6 +655,28 @@ p {
   border-radius: var(--def-border-radius);
 }
 
+.comment-author {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: left;
+}
+
+.comment-author h3 {
+  font-weight: 500;
+}
+
+.comment-author img {
+  max-width: 40px;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--borders-color);
+}
+
+.comments-container {
+  margin-bottom: 2rem;
+}
+
 @media screen and (max-width: 980px) {
   table {
     border: 0;
@@ -808,5 +836,9 @@ p {
       background-color: transparent;
       box-shadow: none;
       transition: 0.3s;
-  }
+    }
+
+    .fr-view img {
+      object-fit: contain;
+    }
   }

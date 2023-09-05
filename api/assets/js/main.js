@@ -84,6 +84,19 @@ function showAlert() {
   // alertBadge.style.display = "none";
   fadeIn(alertBadge, 1000, "block");
   setTimeout('fadeOut(alertBadge, 1000);', 3000);
+  setTimeout('alertBadge.innerHTML=""', 4000);
+}
+
+function loadComments(id) {
+  getComments(id).then(comments => {
+      const commentTemplateSource = document.getElementById('comment_template').innerHTML;
+      const commentTemplate = Handlebars.compile(commentTemplateSource);
+      const output = commentTemplate({ comments: comments });  
+      document.getElementById('comments-container').innerHTML = output;
+  })
+  .catch(error => {
+      console.log("Ошибка при получении комментариев: ", error);
+  });
 }
 
 function loadPage(pageNumber) {
