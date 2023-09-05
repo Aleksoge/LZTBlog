@@ -13,13 +13,13 @@ post('/api/register', 'api/register', ['guest']);
 front('/admin', 'views/admin/index', 'default', ['admin']);
 front('/admin/articles', 'views/admin/articles', 'default', ['admin']);
 front('/admin/article', 'views/admin/article', 'default', ['admin']);
-front('/admin/article/$itemId`', 'views/admin/article', 'default', ['admin']);
+front('/admin/article/$item_id', 'views/admin/article', 'default', ['admin']);
 
 get('/api/articles', 'api/articles', ['admin']); // Информация о статьях
-get('/api/articles/$itemId', 'api/articles', ['admin']); // Информация о статье
+get('/api/articles/$item_id', 'api/articles', ['admin']); // Информация о статье
 post('/api/articles', 'api/article', ['admin']); // Добавление статьи
-patch('/api/articles/$itemId', 'api/article', ['admin']); // Редактирование статьи
-delete('/api/articles/$itemId', 'api/article_delete', ['admin']); // Удаление статьи
+patch('/api/articles/$item_id', 'api/article', ['admin']); // Редактирование статьи
+delete('/api/articles/$item_id', 'api/article_delete', ['admin']); // Удаление статьи
 post('/api/editor_upload_video', 'api/editor_upload_video', ['admin']); 
 post('/api/editor_upload_file', 'api/editor_upload_file', ['admin']);
 post('/api/editor_upload_image', 'api/editor_upload_image', ['admin']); 

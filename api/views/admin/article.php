@@ -25,6 +25,7 @@
         <div class="card-body">
             <form action="#" method="POST" id="articleForm">
                 <?php set_csrf(); ?>
+                <?= (isset($item_id)) ? '<input type="hidden" name="item_id" value="'.$item_id.'">' : NULL ?>
                 <div class="form-field">
                     <label for="title">Заголовок статьи</label>
                     <input type="text" id="title" name="title" class="text-field" required>

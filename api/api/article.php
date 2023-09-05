@@ -28,8 +28,8 @@ if (strlen(trim($data['description'])) < 1) {
 if (!empty($errors)) {
     responseOutput(false, 'Ошибка, что-то пошло не так..', $errors);
 } else {
-    if(isset($data['itemId'])) { 
-        $article = R::load('articles', $data['itemId']);
+    if(isset($data['item_id'])) { 
+        $article = R::load('articles', $data['item_id']);
     } else {
         $article = R::dispense('articles');
     }
