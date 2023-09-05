@@ -90,6 +90,20 @@ p {
   font-size: 14px;
 }
 
+::-webkit-scrollbar {
+	width: 10px;            
+  }
+
+::-webkit-scrollbar-track {
+	background: var(--container-bg);      
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--main-color);
+  border-radius: 20px;
+  border: 2.5px solid var(--container-bg);
+}
+
 .container {
   width: 100%;
   max-width: 1140px;
@@ -104,6 +118,7 @@ p {
   width: 100%;
   height: 75px;
   background: var(--nav-bg);
+  transition: 0.3s;
 }
 
 .navbar__wrap {
@@ -262,6 +277,13 @@ label {
 
 .btn-main:hover {
   background-color: var(--secondary-color);
+}
+
+.btn:disabled {
+  background-color: var(--link-color);
+  opacity: 0.8;
+  transition: 0.3s;
+  cursor: default;
 }
 
 .w-100 {
@@ -441,6 +463,133 @@ a {
   max-width: 80px;
 }
 
+.pagination_controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  text-align: center;
+  margin: 2rem auto;
+  justify-content: center;
+}
+
+#preloader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--container-bg);
+  z-index: 30;
+}
+
+.pre_wrapper small {
+  display: block;
+  position: relative;
+  text-align: center;
+  font-size: 25px;
+  top: 100px;
+}
+
+#preloader .icon_animate {
+  position: absolute;
+  display: block;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.lds-grid {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  position: absolute;
+}
+
+.lds-grid div {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--main-color );
+  animation: lds-grid 1.2s linear infinite;
+}
+
+.lds-grid div:nth-child(1) {
+  top: 8px;
+  left: 8px;
+  animation-delay: 0s;
+}
+
+.lds-grid div:nth-child(2) {
+  top: 8px;
+  left: 32px;
+  animation-delay: -0.4s;
+}
+
+.lds-grid div:nth-child(3) {
+  top: 8px;
+  left: 56px;
+  animation-delay: -0.8s;
+}
+
+.lds-grid div:nth-child(4) {
+  top: 32px;
+  left: 8px;
+  animation-delay: -0.4s;
+}
+
+.lds-grid div:nth-child(5) {
+  top: 32px;
+  left: 32px;
+  animation-delay: -0.8s;
+}
+
+.lds-grid div:nth-child(6) {
+  top: 32px;
+  left: 56px;
+  animation-delay: -1.2s;
+}
+
+.lds-grid div:nth-child(7) {
+  top: 56px;
+  left: 8px;
+  animation-delay: -0.8s;
+}
+
+.lds-grid div:nth-child(8) {
+  top: 56px;
+  left: 32px;
+  animation-delay: -1.2s;
+}
+
+.lds-grid div:nth-child(9) {
+  top: 56px;
+  left: 56px;
+  animation-delay: -1.6s;
+}
+
+.header-scrolling {
+  background: var(--card-bg);
+  box-shadow: 0px 0px 20px rgb(0 0 0 / 10%);
+  transition: 0.3s;
+}
+
+@keyframes lds-grid {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
 @media (max-width: 768px) {
   .articles-grid {
       grid-template-columns: 1fr; 
@@ -535,4 +684,12 @@ a {
     .container {
       padding: 0 15px;
     }
+
+    .sub-menu {
+      display: block;
+      width: 100%;
+      background-color: transparent;
+      box-shadow: none;
+      transition: 0.3s;
+  }
   }

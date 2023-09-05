@@ -20,8 +20,25 @@
         <meta name="theme-color" content="#ffffff">
     </head>
 <body>
+<div id="preloader">
+    <div class="pre_wrapper">
+        <div class="icon_animate">
+            <div class="lds-grid">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+</div>
 <header>
-    <nav class="navbar">
+    <nav class="navbar" id="nav-header">
         <div class="container">
             <div class="navbar__wrap">
             <a href="/" class="logo" id="logo"><img src="/assets/img/logo.svg" height="24" alt="">Новости</a>

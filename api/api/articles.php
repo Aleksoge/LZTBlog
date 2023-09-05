@@ -1,5 +1,5 @@
 <?php
-$articles_count = 2; 
+$articles_count = 8; 
 
 $result = [];
 $page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;

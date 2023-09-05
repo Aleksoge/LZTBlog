@@ -1,14 +1,14 @@
 <div class="container">
     <div class="articles-grid my-1" id="articles_container"></div>
-    <div id="pagination_controls">
-        <button id="prev_page" onclick="changePage(-1)">Предыдущая</button>
+    <div class="pagination_controls" id="pagination_controls">
+        <button id="prev_page" class="btn btn-main" onclick="changePage(-1)">«</button>
         <span id="current_page">1</span>
-        <button id="next_page" onclick="changePage(1)">Следующая</button>
+        <button id="next_page" class="btn btn-main" onclick="changePage(1)">»</button>
     </div>
 </div>
 <script id="article_template" type="text/x-handlebars-template">
   {{#each articles}}
-    <article class="article">
+    <article class="article" onclick="location.href='/article/{{this.id}}';">
         <div class="article-content">
             <h1 class="my-1">{{this.title}}</h1>
             <div class="fr-view">
@@ -23,27 +23,13 @@
 </script>
 <script>
 let currentPage = 1;
+let totalPages = 1;
 
 document.addEventListener('DOMContentLoaded', function() {
-    loadPage(currentPage);
-});
-
-function loadPage(pageNumber) {
-    getArticles(pageNumber).then(articles => {
-        const templateSource = document.getElementById('article_template').innerHTML;
-        const template = Handlebars.compile(templateSource);
-        const output = template({ articles: articles });  
-        document.getElementById('articles_container').innerHTML = output;
-        document.getElementById('current_page').textContent = pageNumber;
-    })
-    .catch(error => {
-        console.log("Ошибка при получении статей:", error);
+    getTotalPages().then(pages => {
+        totalPages = pages[0].total_pages;
+        updatePaginationControls();
+        loadPage(currentPage);
     });
-}
-
-function changePage(increment) {
-    currentPage += increment;
-    loadPage(currentPage);
-}
-
+});
 </script>

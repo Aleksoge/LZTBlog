@@ -55,5 +55,5 @@ function getArticles(page) {
 }
 
 function getTotalPages() {
-    return sendSimpleFetchEvent("/api/articles?page=" + page, "GET");
+    return sendSimpleFetchEvent("/api/articles/count", "GET");
 }

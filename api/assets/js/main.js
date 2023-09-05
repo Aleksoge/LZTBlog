@@ -85,3 +85,54 @@ function showAlert() {
   fadeIn(alertBadge, 1000, "block");
   setTimeout('fadeOut(alertBadge, 1000);', 3000);
 }
+
+function loadPage(pageNumber) {
+  getArticles(pageNumber).then(articles => {
+      const templateSource = document.getElementById('article_template').innerHTML;
+      const template = Handlebars.compile(templateSource);
+      const output = template({ articles: articles });  
+      document.getElementById('articles_container').innerHTML = output;
+      document.getElementById('current_page').textContent = pageNumber;
+      updatePaginationControls();
+  })
+  .catch(error => {
+      console.log("Ошибка при получении статей:", error);
+  });
+}
+
+function changePage(increment) {
+  currentPage += increment;
+  if (currentPage < 1) currentPage = 1;
+  if (currentPage > totalPages) currentPage = totalPages;
+  loadPage(currentPage);
+}
+
+function updatePaginationControls() {
+  document.getElementById('prev_page').disabled = (currentPage === 1);
+  document.getElementById('next_page').disabled = (currentPage === totalPages);
+}
+
+window.addEventListener('load', function() {
+  var preloader = document.getElementById('preloader');
+  var iconAnimate = preloader.querySelector('.icon_animate');
+
+  iconAnimate.style.opacity = '0';
+  iconAnimate.style.transition = 'opacity 0.3s';
+
+  setTimeout(function() {
+      preloader.style.opacity = '0';
+      preloader.style.transition = 'opacity 0.6s';
+      setTimeout(function() {
+          preloader.style.display = 'none';
+      }, 600);
+  }, 300);
+});
+
+const header = document.querySelector('#nav-header'); 
+window.addEventListener('scroll', function() {
+  if (window.scrollY >= 54) {
+    header.classList.add('header-scrolling'); 
+  } else {
+    header.classList.remove('header-scrolling'); 
+  }
+});
