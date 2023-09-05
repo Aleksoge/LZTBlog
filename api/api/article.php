@@ -35,7 +35,7 @@ if (!empty($errors)) {
     }
     $article->title = $data['title'];
     $article->author = $data['author'];
-    $article->img = $imgPath;
+    $article->image = $imgPath;
     $article->shortdescription = $data['shortdescription'];
     $article->description = $data['description'];
     $article->createdby = $authorized_user->id;

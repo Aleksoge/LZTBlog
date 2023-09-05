@@ -34,3 +34,26 @@ function sendFetchEvent(event, fetchUrl, redirectUrl, smethod = 'POST') {
     });
 }
 
+function sendSimpleFetchEvent(fetchUrl, smethod = 'POST') {
+    return fetch(fetchUrl, {
+        method: smethod
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Ошибка соединения с сервером.');
+        }
+        return response.json();
+    })
+    .catch(error => {
+        console.log("Ошибка при отправке запроса:", error);
+        throw error; 
+    });
+}
+
+function getArticles(page) {
+    return sendSimpleFetchEvent("/api/articles?page=" + page, "GET");
+}
+
+function getTotalPages() {
+    return sendSimpleFetchEvent("/api/articles?page=" + page, "GET");
+}

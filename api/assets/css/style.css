@@ -437,6 +437,10 @@ a {
   opacity: 0.4;
 }
 
+.article-content .fr-view img {
+  max-width: 80px;
+}
+
 @media (max-width: 768px) {
   .articles-grid {
       grid-template-columns: 1fr; 

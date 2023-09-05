@@ -12,7 +12,7 @@ if (!empty($errors)) {
     if(isset($item_id)) {
         $articles = R::load('articles', (int)$item_id);
         if($articles->title == null) {
-            $response = array('message' => 'Ошибка, данной статьи не существует.', 'result' => '');
+            $response = array('error' => 'Ошибка, данной статьи не существует.');
             header('Content-Type: application/json');
             echo json_encode($response);
             exit();
@@ -30,6 +30,7 @@ if (!empty($errors)) {
             'id' => $articles->id,
             'title' => $articles->title,
             'author' => $articles->author,
+            'image' => $articles->image,
             'shortdescription' => $articles->shortdescription,
             'description' => $articles->description,
             'date' => $formatter->format($date)
@@ -50,13 +51,14 @@ if (!empty($errors)) {
                 'id' => $item->id,
                 'title' => $item->title,
                 'author' => $item->author,
+                'image' => $item->image,
                 'shortdescription' => $item->shortdescription,
                 'description' => $item->description,
                 'date' => $formatter->format($date)
             ];
         }
     }
-    $response = array('result' => $result);
+    $response = $result;
 }
 
 header('Content-Type: application/json');
