@@ -46,6 +46,6 @@ function d_reverse(e, t, n) {
 var license_data = "V3|BOARD4ALL|WILDCARD_ACTIVATION_KEY|2099";
 var enc_license = Encode(license_data);
 
-console.log("\nLICENSE DATA: " + license_data);
-console.log("\nENCODED LICENSE: " + enc_license.replace(/\\/g, '\\\\'));
-console.log("\nDECODED LICENSE: " + Decode(enc_license));
+// console.log("\nLICENSE DATA: " + license_data);
+// console.log("\nENCODED LICENSE: " + enc_license.replace(/\\/g, '\\\\'));
+// console.log("\nDECODED LICENSE: " + Decode(enc_license));

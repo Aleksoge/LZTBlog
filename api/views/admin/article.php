@@ -1,5 +1,24 @@
+<link rel="stylesheet" href="/assets/css/editor/froala_editor.css">
+<link rel="stylesheet" href="/assets/css/editor/froala_style.css">
+<link rel="stylesheet" href="/assets/css/editor/plugins/code_view.css">
+<link rel="stylesheet" href="/assets/css/editor/plugins/draggable.css">
+<link rel="stylesheet" href="/assets/css/editor/plugins/colors.css">
+<link rel="stylesheet" href="/assets/css/editor/plugins/emoticons.css">
+<link rel="stylesheet" href="/assets/css/editor/plugins/image_manager.css">
+<link rel="stylesheet" href="/assets/css/editor/plugins/image.css">
+<link rel="stylesheet" href="/assets/css/editor/plugins/line_breaker.css">
+<link rel="stylesheet" href="/assets/css/editor/plugins/table.css">
+<link rel="stylesheet" href="/assets/css/editor/plugins/char_counter.css">
+<link rel="stylesheet" href="/assets/css/editor/plugins/video.css">
+<link rel="stylesheet" href="/assets/css/editor/plugins/fullscreen.css">
+<link rel="stylesheet" href="/assets/css/editor/plugins/file.css">
+<link rel="stylesheet" href="/assets/css/editor/plugins/quick_insert.css">
+<link rel="stylesheet" href="/assets/css/editor/plugins/help.css">
+<link rel="stylesheet" href="/assets/css/editor/third_party/spell_checker.css">
+<link rel="stylesheet" href="/assets/css/editor/plugins/special_characters.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
 <div class="container">
-    <div class="card card-form w-100">
+    <div class="card card-form mw-100">
         <div class="card-header">
             <h2>Вход</h2>
         </div>
@@ -7,24 +26,22 @@
             <form action="#" method="POST" id="loginForm">
                 <?php set_csrf(); ?>
                 <div class="form-field">
-                    <label for="username">Имя пользователя</label>
+                    <label for="username">Заголовок статьи</label>
                     <input type="text" id="username" name="username" class="text-field" required>
-                </div>
-                <div class="form-field">
-                    <label for="password">Пароль</label>
-                    <input type="password" id="password" name="password" class="text-field" required>
                 </div>
                 <div class="form-field">
                     <input type="checkbox" name="remember" id="remember" checked>
                     <label for="remember">Запомнить меня</label>
                 </div>
                 <div class="form-field">
+                    <label for="username">Краткое содержание</label>
                     <textarea id="shortdescription" name="shortdescription"></textarea>
                 </div>
                 <div class="form-field">
+                    <label for="username">Полное содержание</label>
                     <textarea id="description" name="description"></textarea>
                 </div>
-                <button type="submit" class="btn btn-main w-100">Войти</button>
+                <button type="submit" class="btn btn-main w-100">Опубликовать</button>
             </form>
         </div>
         <div class="card-footer">
@@ -80,15 +97,15 @@
 	new FroalaEditor('textarea#shortdescription', {
 		key: "1C%kZV[IX)_SL}UJHAEFZMUJOYGYQE[\\ZJ]RAe(+%$==",
 		attribution: false,
-		fileUploadURL: '/handler/upload_file.php',
+		fileUploadURL: '/api/editor_upload_file',
 		fileUploadParams: {
 		id: 'my_editor'
 		},
-		imageUploadURL: '/handler/upload_image.php',
+		imageUploadURL: '/api/editor_upload_image',
 			imageUploadParams: {
 			id: 'my_editor'
 		},
-		videoUploadURL: '/handler/upload_video.php' ,
+		videoUploadURL: '/api/editor_upload_video' ,
 		 videoUploadParams : {
 		 id : 'my_editor'
 		}
@@ -97,15 +114,15 @@
 	new FroalaEditor('textarea#description', {
 		key: "1C%kZV[IX)_SL}UJHAEFZMUJOYGYQE[\\ZJ]RAe(+%$==",
 		attribution: false,
-		fileUploadURL: '/handler/upload_file.php',
+		fileUploadURL: '/api/editor_upload_file',
 		fileUploadParams: {
 		id: 'my_editor'
 		},
-		imageUploadURL: '/handler/upload_image.php',
+		imageUploadURL: '/api/editor_upload_image',
 			imageUploadParams: {
 			id: 'my_editor'
 		},
-		videoUploadURL: '/handler/upload_video.php' ,
+		videoUploadURL: '/api/editor_upload_video' ,
 		 videoUploadParams : {
 		 id : 'my_editor'
 		}
