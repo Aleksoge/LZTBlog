@@ -40,7 +40,7 @@ function uploadFile($file, $destinationDir) {
     }
 
     // Проверим тип файла
-    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/svg'];
+    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/svg', 'image/webp', 'image/jpg'];
     if (!in_array($file['type'], $allowedTypes)) {
         return false;
     }

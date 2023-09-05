@@ -39,6 +39,7 @@ if (!empty($errors)) {
     $article->shortdescription = $data['shortdescription'];
     $article->description = $data['description'];
     $article->createdby = $authorized_user->id;
+    $article->created = date('Y-m-d H:i:s');
     $article->updated = date('Y-m-d H:i:s');
     R::store($article);
     responseOutput(true, 'Статья успешно сохранена.');

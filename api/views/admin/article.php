@@ -116,7 +116,9 @@
 		videoUploadURL: '/api/editor_upload_video' ,
 		 videoUploadParams : {
 		 id : 'my_editor'
-		}
+		},
+        htmlAllowedTags: [],
+        charCounterMax: 300
 	});
 	
 	new FroalaEditor('textarea#description', {
