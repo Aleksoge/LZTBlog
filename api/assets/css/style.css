@@ -619,6 +619,36 @@ table th {
   margin-top: 0.5rem;
 }
 
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.fr-view h1 {
+  margin-bottom: 1.1rem;
+}
+
+.fr-view h2 {
+  margin-bottom: 1rem;
+}
+
+.fr-view h3 {
+  margin-bottom: 0.9rem;
+}
+
+.fr-view p {
+  margin-bottom: 0.9rem;
+}
+
+.fr-view blockquote {
+  margin-bottom: 0.9rem;
+}
+
+.fr-view img {
+  margin-bottom: 1rem;
+  border-radius: var(--def-border-radius);
+}
+
 @media screen and (max-width: 980px) {
   table {
     border: 0;

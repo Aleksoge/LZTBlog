@@ -4,7 +4,7 @@ require_once __DIR__.'/routeController.php';
 front('/', 'views/index.php', 'default');
 front('/login', 'views/login', 'default', ['guest']);
 front('/register', 'views/register', 'default', ['guest']);
-front('/article/$itemId', 'views/article', 'default');
+front('/article/$item_id', 'views/article', 'default');
 
 get('/logout', 'api/logout');
 post('/api/login', 'api/login', ['guest']);

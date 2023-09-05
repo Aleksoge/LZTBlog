@@ -7,6 +7,10 @@ if (strlen(trim($data['title'])) < 1) {
     $errors['title'] = "Заголовок статьи не может быть пустым.";
 }
 
+if (strlen(trim($data['author'])) < 1) {
+    $errors['title'] = "Автор статьи не может отсутствовать.";
+}
+
 $imgPath = $data['img_path']; 
 if (isset($_FILES['img_load']) && $_FILES['img_load']['error'] === UPLOAD_ERR_OK) {
     $imgFilename = uploadFile($_FILES['img_load'], $_SERVER['DOCUMENT_ROOT'].'/uploads');
@@ -32,6 +36,7 @@ if (!empty($errors)) {
         $article = R::load('articles', $data['item_id']);
     } else {
         $article = R::dispense('articles');
+        $article->created = date('Y-m-d H:i:s');
     }
     $article->title = $data['title'];
     $article->author = $data['author'];
@@ -39,7 +44,6 @@ if (!empty($errors)) {
     $article->shortdescription = $data['shortdescription'];
     $article->description = $data['description'];
     $article->createdby = $authorized_user->id;
-    $article->created = date('Y-m-d H:i:s');
     $article->updated = date('Y-m-d H:i:s');
     R::store($article);
     responseOutput(true, 'Статья успешно сохранена.');

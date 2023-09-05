@@ -1,3 +1,8 @@
+<!-- 
+##########################################################################
+                            FROALA EDITOR
+########################################################################## 
+-->
 <link rel="stylesheet" href="/assets/css/editor/froala_editor.css">
 <link rel="stylesheet" href="/assets/css/editor/froala_style.css">
 <link rel="stylesheet" href="/assets/css/editor/plugins/code_view.css">
@@ -17,6 +22,10 @@
 <link rel="stylesheet" href="/assets/css/editor/third_party/spell_checker.css">
 <link rel="stylesheet" href="/assets/css/editor/plugins/special_characters.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+<!-- 
+##########################################################################
+########################################################################## 
+-->
 <div class="container">
     <div class="card card-form mw-100">
         <div class="card-header">
@@ -55,16 +64,40 @@
         </div>
         <div class="card-footer">
                 <div class="register-link">
-                    <p><a href="/admin">Вернуться в панель</a></p>
+                    <p><a href="/admin/articles">Вернуться к статьям</a></p>
                 </div>
         </div>
     </div>
 </div>
+
 <script>
     document.getElementById('articleForm').addEventListener('submit', function(event) {
         sendFetchEvent(event, '/api/articles', '/admin/articles', 'POST');
     });
 </script>
+
+<?php if(isset($item_id)) { ?> 
+<script defer>
+    document.addEventListener('DOMContentLoaded', function() {
+        getArticle(<?= $item_id ?>).then(articles => {
+            document.getElementById("title").value = articles[0].title;
+            document.getElementById("author").value = articles[0].author;
+            document.getElementById("img_path").value = articles[0].image;
+            document.getElementById("shortdescription").innerHTML = articles[0].shortdescription;
+            document.getElementById("description").innerHTML = articles[0].description;
+        })
+        .catch(error => {
+            console.log("Ошибка при получении статей:", error);
+        });
+    });
+</script>
+<?php } ?>
+
+<!-- 
+##########################################################################
+                            FROALA EDITOR
+########################################################################## 
+-->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
 <script type="text/javascript" src="/assets/js/editor/froala_editor.min.js"></script>
@@ -103,57 +136,43 @@
 <script>
 (function() {
 
-	new FroalaEditor('textarea#shortdescription', {
-		key: "1C%kZV[IX)_SL}UJHAEFZMUJOYGYQE[\\ZJ]RAe(+%$==",
-		attribution: false,
-		fileUploadURL: '/api/editor_upload_file',
-		fileUploadParams: {
-		id: 'my_editor'
-		},
-		imageUploadURL: '/api/editor_upload_image',
-			imageUploadParams: {
-			id: 'my_editor'
-		},
-		videoUploadURL: '/api/editor_upload_video' ,
-		 videoUploadParams : {
-		 id : 'my_editor'
-		},
-        htmlAllowedTags: [],
-        charCounterMax: 300
-	});
-	
-	new FroalaEditor('textarea#description', {
-		key: "1C%kZV[IX)_SL}UJHAEFZMUJOYGYQE[\\ZJ]RAe(+%$==",
-		attribution: false,
-		fileUploadURL: '/api/editor_upload_file',
-		fileUploadParams: {
-		id: 'my_editor'
-		},
-		imageUploadURL: '/api/editor_upload_image',
-			imageUploadParams: {
-			id: 'my_editor'
-		},
-		videoUploadURL: '/api/editor_upload_video' ,
-		 videoUploadParams : {
-		 id : 'my_editor'
-		}
-	});
-	
-})()
-</script>
-<?php if(isset($item_id)) { ?> 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        getArticle(<?= $item_id ?>).then(articles => {
-            document.getElementById("title").value = articles[0].title;
-            document.getElementById("author").value = articles[0].author;
-            document.getElementById("img_path").value = articles[0].image;
-            document.querySelector("#shortdescription_field .fr-view").innerHTML = articles[0].shortdescription;
-            document.querySelector("#description_field .fr-view").innerHTML = articles[0].description;
-        })
-        .catch(error => {
-            console.log("Ошибка при получении статей:", error);
+    setTimeout(function() {
+        new FroalaEditor('textarea#shortdescription', {
+            key: "1C%kZV[IX)_SL}UJHAEFZMUJOYGYQE[\\ZJ]RAe(+%$==",
+            attribution: false,
+            fileUploadURL: '/api/editor_upload_file',
+            fileUploadParams: {
+                id: 'my_editor'
+            },
+            imageUploadURL: '/api/editor_upload_image',
+            imageUploadParams: {
+                id: 'my_editor'
+            },
+            videoUploadURL: '/api/editor_upload_video',
+            videoUploadParams: {
+                id: 'my_editor'
+            },
+            htmlAllowedTags: [],
+            charCounterMax: 300
         });
-    });
+
+        new FroalaEditor('textarea#description', {
+            key: "1C%kZV[IX)_SL}UJHAEFZMUJOYGYQE[\\ZJ]RAe(+%$==",
+            attribution: false,
+            fileUploadURL: '/api/editor_upload_file',
+            fileUploadParams: {
+                id: 'my_editor'
+            },
+            imageUploadURL: '/api/editor_upload_image',
+            imageUploadParams: {
+                id: 'my_editor'
+            },
+            videoUploadURL: '/api/editor_upload_video',
+            videoUploadParams: {
+                id: 'my_editor'
+            }
+        });
+    }, 100);
+
+})();
 </script>
-<?php } ?>

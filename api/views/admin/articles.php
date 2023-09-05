@@ -25,7 +25,7 @@
         <td>{{this.title}}</td>
         <td>{{this.date}}</td>
         <td><a href="/article/{{this.id}}" target="_blank">Перейти</a></td>
-        <td><a href="/admin/article/{{this.id}}" class="btn btn-main" target="_blank">Редактировать</a><a href="#" class="btn btn-main mt-05" onclick="deleteArticle({{this.id}})">Удалить</a></td>
+        <td><a href="/admin/article/{{this.id}}" class="btn btn-main">Редактировать</a><a href="#" class="btn btn-main mt-05" onclick="deleteArticle({{this.id}})">Удалить</a></td>
     </tr>
   {{/each}}
 </script>
