@@ -2,7 +2,6 @@
 require __DIR__.'/app/config.php';
 require __DIR__.'/app/appController.php';
 require __DIR__.'/app/userController.php';
-require __DIR__.'/app/adminController.php';
 
 function front($route, $path_to_include, $front_type = null, $roles_allowed = null)
 {

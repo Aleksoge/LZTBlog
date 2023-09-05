@@ -23,37 +23,45 @@
             <h2>Вход</h2>
         </div>
         <div class="card-body">
-            <form action="#" method="POST" id="loginForm">
+            <form action="#" method="POST" id="articleForm">
                 <?php set_csrf(); ?>
                 <div class="form-field">
-                    <label for="username">Заголовок статьи</label>
-                    <input type="text" id="username" name="username" class="text-field" required>
+                    <label for="title">Заголовок статьи</label>
+                    <input type="text" id="title" name="title" class="text-field" required>
                 </div>
                 <div class="form-field">
-                    <input type="checkbox" name="remember" id="remember" checked>
-                    <label for="remember">Запомнить меня</label>
+                    <label for="author">Имя автора статьи</label>
+                    <input type="text" id="author" name="author" class="text-field">
                 </div>
                 <div class="form-field">
-                    <label for="username">Краткое содержание</label>
-                    <textarea id="shortdescription" name="shortdescription"></textarea>
+                    <label>Путь до картинки</label>
+                    <input type="text" class="text-field" name="img_path" placeholder="Путь до картинки">
                 </div>
                 <div class="form-field">
-                    <label for="username">Полное содержание</label>
-                    <textarea id="description" name="description"></textarea>
+                    <label>Или загрузить картинку</label>
+                    <input type="file" class="text-field" name="img_load" placeholder="Или загрузить иконку">
                 </div>
-                <button type="submit" class="btn btn-main w-100">Опубликовать</button>
+                <div class="form-field">
+                    <label for="shortdescription">Краткое содержание</label>
+                    <textarea id="shortdescription" class="text-field w-100" name="shortdescription"></textarea>
+                </div>
+                <div class="form-field">
+                    <label for="description">Полное содержание</label>
+                    <textarea id="description" class="text-field w-100" name="description"></textarea>
+                </div>
+                <button type="submit" class="btn btn-main w-100">Сохранить</button>
             </form>
         </div>
         <div class="card-footer">
                 <div class="register-link">
-                    <p>Нет аккаунта? <a href="/register">Зарегистрироваться</a></p>
+                    <p><a href="/admin">Вернуться в панель</a></p>
                 </div>
         </div>
     </div>
 </div>
 <script>
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
-        sendFetchEvent(event, '/api/login', '/');
+    document.getElementById('articleForm').addEventListener('submit', function(event) {
+        sendFetchEvent(event, '/api/articles', '/admin/articles', 'POST');
     });
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>

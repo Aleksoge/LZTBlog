@@ -32,3 +32,28 @@ function isValidEmail($email) {
     $pattern = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
     return preg_match($pattern, $email);
 }
+
+
+function uploadFile($file, $destinationDir) {
+    if ($file['error'] !== UPLOAD_ERR_OK) {
+        return false;
+    }
+
+    // Проверим тип файла
+    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/svg'];
+    if (!in_array($file['type'], $allowedTypes)) {
+        return false;
+    }
+
+    // Генерация уникального имени файла
+    $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+    $filename = uniqid() . '.' . $extension;
+
+    $destinationPath = $destinationDir . '/' . $filename;
+
+    if (move_uploaded_file($file['tmp_name'], $destinationPath)) {
+        return $filename;
+    } else {
+        return false;
+    }
+}
