@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="article-overlay">
-            <img src="{{this.image}}" alt="{{this.title}}">
+            <img src="{{this.image}}" loading="lazy" alt="{{this.title}}">
         </div>
     </article>
   {{/each}}

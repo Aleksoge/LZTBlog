@@ -119,6 +119,7 @@ p {
   height: 75px;
   background: var(--nav-bg);
   transition: 0.3s;
+  z-index: 3;
 }
 
 .navbar__wrap {
@@ -317,6 +318,7 @@ div#alertBadge {
   border-radius: var(--inp-border-radius);
   text-align: center;
   transition: 0.3s;
+  z-index: 4;
 }
 
 a {
@@ -579,6 +581,91 @@ a {
   background: var(--card-bg);
   box-shadow: 0px 0px 20px rgb(0 0 0 / 10%);
   transition: 0.3s;
+}
+
+table {
+  border: 1px solid var(--borders-color);
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  background-color: var(--container-bg);
+  border: 1px solid var(--borders-color);
+  padding: .35em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.mt-05 {
+  margin-top: 0.5rem;
+}
+
+@media screen and (max-width: 980px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    border-bottom: 3px solid var(--borders-color);
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  table td {
+    border-bottom: 1px solid var(--borders-color);
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
 }
 
 @keyframes lds-grid {
