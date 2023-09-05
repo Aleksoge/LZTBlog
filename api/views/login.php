@@ -7,8 +7,8 @@
             <form action="#" method="POST" id="loginForm">
                 <?php set_csrf(); ?>
                 <div class="form-field">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" class="text-field" required>
+                    <label for="username">Имя пользователя</label>
+                    <input type="text" id="username" name="username" class="text-field" required>
                 </div>
                 <div class="form-field">
                     <label for="password">Пароль</label>

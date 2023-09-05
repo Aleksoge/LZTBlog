@@ -45,11 +45,11 @@ function any($route, $path_to_include, $roles_allowed = null)
 	route($route, $path_to_include, $roles_allowed);
 }
 
-function checkAccess($authorized_user, $roles_allowed = null) {
-	if (!$roles_allowed) {
+function checkAccess($authorized_user= null, $roles_allowed = null) {
+	if (!isset($roles_allowed)) {
 		return true;
 	}
-	if($roles_allowed == 'guest') {
+	if(in_array('guest', $roles_allowed)) {
 		if (!isset($_SESSION['user'])) {
 			return true;
 		} else {
@@ -63,34 +63,6 @@ function checkAccess($authorized_user, $roles_allowed = null) {
 }
 
 function route($route, $path_to_include, $roles_allowed = null, $front_type = null) {
-	$global_settings = R::load('settings', 1);
-	if(!isset($_SESSION)) { session_start(); }
-	$authorized_user = null;
-	if(!isset($_SESSION['user'])) {
-		if(isset($_COOKIE['remember_token'])) {
-			$authorized_user = R::findOne('users', 'remember_token = ?', [$_COOKIE['remember_token']]);
-			if ($authorized_user) {
-				if($authorized_user->confirmed > 0) { 
-					$_SESSION['user'] = [
-						"username" => $authorized_user->username,
-						"email" => $authorized_user->email,
-						"avatar" => $authorized_user->avatar
-					];
-				}
-			}
-		}
-	} else {
-		$authorized_user = R::findOne('users', 'username = ?', [$_SESSION['user']['username']]);
-		if($authorized_user->confirmed < 1) { 
-			unset($_SESSION['user']);
-			unset($_COOKIE['remember_token']);
-			setcookie('remember_token', '', -1, '/'); 
-		}
-	}
-	if(!checkAccess($authorized_user, $roles_allowed)) {
-		include_once __DIR__ . "/views/404.php"; 
-		exit();
-	}
 	$callback = $path_to_include;
 	if (!is_callable($callback)) {
 		if (!strpos($path_to_include, '.php')) {
@@ -112,6 +84,33 @@ function route($route, $path_to_include, $roles_allowed = null, $front_type = nu
 		// Callback function
 		if (is_callable($callback)) {
 			call_user_func_array($callback, []);
+			exit();
+		}
+		$global_settings = R::load('settings', 1);
+		$authorized_user = null;
+		if(!isset($_SESSION['user'])) {
+			if(isset($_COOKIE['remember_token'])) {
+				$authorized_user = R::findOne('users', 'remember_token = ?', [$_COOKIE['remember_token']]);
+				if ($authorized_user) {
+					if($authorized_user->confirmed > 0) { 
+						$_SESSION['user'] = [
+							"username" => $authorized_user->username,
+							"email" => $authorized_user->email,
+							"avatar" => $authorized_user->avatar
+						];
+					}
+				}
+			}
+		} else {
+			$authorized_user = R::findOne('users', 'username = ?', [$_SESSION['user']['username']]);
+			if($authorized_user->confirmed < 1) { 
+				unset($_SESSION['user']);
+				unset($_COOKIE['remember_token']);
+				setcookie('remember_token', '', -1, '/'); 
+			}
+		}
+		if(!checkAccess($authorized_user, $roles_allowed)) {
+			include_once __DIR__ . "/views/404.php"; 
 			exit();
 		}
 		if(isset($front_type)) {
@@ -140,6 +139,33 @@ function route($route, $path_to_include, $roles_allowed = null, $front_type = nu
 	// Callback function
 	if (is_callable($callback)) {
 		call_user_func_array($callback, $parameters);
+		exit();
+	}
+	$global_settings = R::load('settings', 1);
+	$authorized_user = null;
+	if(!isset($_SESSION['user'])) {
+		if(isset($_COOKIE['remember_token'])) {
+			$authorized_user = R::findOne('users', 'remember_token = ?', [$_COOKIE['remember_token']]);
+			if ($authorized_user) {
+				if($authorized_user->confirmed > 0) { 
+					$_SESSION['user'] = [
+						"username" => $authorized_user->username,
+						"email" => $authorized_user->email,
+						"avatar" => $authorized_user->avatar
+					];
+				}
+			}
+		}
+	} else {
+		$authorized_user = R::findOne('users', 'username = ?', [$_SESSION['user']['username']]);
+		if($authorized_user->confirmed < 1) { 
+			unset($_SESSION['user']);
+			unset($_COOKIE['remember_token']);
+			setcookie('remember_token', '', -1, '/'); 
+		}
+	}
+	if(!checkAccess($authorized_user, $roles_allowed)) {
+		include_once __DIR__ . "/views/404.php"; 
 		exit();
 	}
 	if(isset($front_type)) {
