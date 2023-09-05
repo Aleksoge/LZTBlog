@@ -14,6 +14,10 @@
                     <label for="password">Пароль</label>
                     <input type="password" id="password" name="password" class="text-field" required>
                 </div>
+                <div class="form-field">
+                    <input type="checkbox" name="remember" id="remember" checked>
+                    <label for="remember">Запомнить меня</label>
+                </div>
                 <button type="submit" class="btn btn-main w-100">Войти</button>
             </form>
         </div>

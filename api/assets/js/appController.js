@@ -1,11 +1,11 @@
-function sendFetchEvent(event, fetchUrl, redirectUrl) {
+function sendFetchEvent(event, fetchUrl, redirectUrl, smethod = 'POST') {
     event.preventDefault(); 
 
     let form = event.target;
     let formData = new FormData(form);
 
     fetch(fetchUrl, {
-        method: "POST",
+        method: smethod,
         body: formData
     })
     .then(response => response.json())
