@@ -54,6 +54,10 @@ function getArticles(page) {
     return sendSimpleFetchEvent("/api/articles?page=" + page, "GET");
 }
 
+function getArticle(id) {
+    return sendSimpleFetchEvent("/api/articles/" + id, "GET");
+}
+
 function getTotalPages() {
     return sendSimpleFetchEvent("/api/articles/count", "GET");
 }

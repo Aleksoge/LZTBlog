@@ -36,17 +36,17 @@
                 </div>
                 <div class="form-field">
                     <label>Путь до картинки</label>
-                    <input type="text" class="text-field" name="img_path" placeholder="Путь до картинки">
+                    <input type="text" class="text-field" id="img_path" name="img_path" placeholder="Путь до картинки">
                 </div>
                 <div class="form-field">
                     <label>Или загрузить картинку</label>
                     <input type="file" class="text-field" name="img_load" placeholder="Или загрузить иконку">
                 </div>
-                <div class="form-field">
+                <div class="form-field" id="shortdescription_field">
                     <label for="shortdescription">Краткое содержание</label>
                     <textarea id="shortdescription" class="text-field w-100" name="shortdescription"></textarea>
                 </div>
-                <div class="form-field">
+                <div class="form-field" id="description_field">
                     <label for="description">Полное содержание</label>
                     <textarea id="description" class="text-field w-100" name="description"></textarea>
                 </div>
@@ -141,3 +141,19 @@
 	
 })()
 </script>
+<?php if(isset($item_id)) { ?> 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        getArticle(<?= $item_id ?>).then(articles => {
+            document.getElementById("title").value = articles[0].title;
+            document.getElementById("author").value = articles[0].author;
+            document.getElementById("img_path").value = articles[0].image;
+            document.querySelector("#shortdescription_field .fr-view").innerHTML = articles[0].shortdescription;
+            document.querySelector("#description_field .fr-view").innerHTML = articles[0].description;
+        })
+        .catch(error => {
+            console.log("Ошибка при получении статей:", error);
+        });
+    });
+</script>
+<?php } ?>

@@ -20,12 +20,12 @@
 </div>
 <script id="article_template" type="text/x-handlebars-template">
   {{#each articles}}
-    <tr>
+    <tr id="article-{{this.id}}">
         <td>{{this.id}}</td>
         <td>{{this.title}}</td>
         <td>{{this.date}}</td>
         <td><a href="/article/{{this.id}}" target="_blank">Перейти</a></td>
-        <td><a href="/admin/article/{{this.id}}" class="btn btn-main" target="_blank">Редактировать</a><a href="/admin/article/{{this.id}}" class="btn btn-main mt-05">Удалить</a></td>
+        <td><a href="/admin/article/{{this.id}}" class="btn btn-main" target="_blank">Редактировать</a><a href="#" class="btn btn-main mt-05" onclick="deleteArticle({{this.id}})">Удалить</a></td>
     </tr>
   {{/each}}
 </script>
@@ -40,4 +40,12 @@ document.addEventListener('DOMContentLoaded', function() {
         loadPage(currentPage);
     });
 });
+</script>
+<script>
+    function deleteArticle(id) {
+        if(confirm('Вы уверены, что хотите удалить эту статью?')) {
+            document.getElementById('article-' + id).remove();
+            return sendSimpleFetchEvent("/api/articles/" + id, "delete");
+        }
+    }
 </script>
