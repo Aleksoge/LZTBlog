@@ -61,14 +61,13 @@
         .catch(error => {
             console.log("Ошибка при получении статьи: ", error);
         });
+        loadComments(<?= $item_id ?>);
     });
 </script>
 <?php } ?>
 
-s
-
 <script>
     document.getElementById('add_comment').addEventListener('submit', function(event) {
-        addComment(event, '/api/comments', '#');
+        addComment(event, '/api/comments/<?= (int)$item_id ?>', '#');
     });
 </script>

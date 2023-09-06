@@ -12,7 +12,8 @@ post('/api/register', 'api/register', ['guest']);
 get('/api/articles', 'api/articles'); // Информация о статьях
 get('/api/articles/count', 'api/articles_count'); 
 get('/api/articles/$item_id', 'api/articles'); // Информация о статье
-post('/api/comments', 'api/comment', ['user', 'admin']); // Добавление комментария
+get('/api/comments/$article_id', 'api/comments'); 
+post('/api/comments/$article_id', 'api/comment', ['user', 'admin']); // Добавление комментария
 
 // ADMIN //
 front('/admin', 'views/admin/index', 'default', ['admin']);

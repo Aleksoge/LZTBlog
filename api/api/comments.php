@@ -6,8 +6,8 @@ if (!empty($errors)) {
     responseOutput(false, 'Ошибка, что-то пошло не так..', $errors);
 } else {
     $comments = R::findAll('comments', 'WHERE article = ?', [$article_id]);
-    foreach ($articles as $item) {
-        $date = new DateTime($item->created);
+    foreach ($comments as $item) {
+        $date = new DateTime($item->updated);
         $formatter = new IntlDateFormatter(
             'ru_RU',
             IntlDateFormatter::LONG,
@@ -18,11 +18,9 @@ if (!empty($errors)) {
         );
         $result[] = [
             'id' => $item->id,
-            'title' => $item->title,
-            'author' => $item->author,
-            'image' => $item->image,
-            'shortdescription' => $item->shortdescription,
-            'description' => $item->description,
+            'name' => $item->name,
+            'comment' => $item->comment,
+            'article' => $item->article,
             'date' => $formatter->format($date)
         ];
     }
