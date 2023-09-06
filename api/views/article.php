@@ -41,7 +41,7 @@
                         <div class="form-field">
                             <textarea rows="5" name="comment" id="comment" class="text-field" placeholder="Ваш комментрий"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-main w-100">Поделиться мнением</button>
+                        <button type="submit" class="btn btn-main w-100" id="share_comment">Поделиться мнением</button>
                     </form>
                 </div>
             </div>

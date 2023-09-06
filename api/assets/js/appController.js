@@ -71,6 +71,7 @@ function addComment(event, fetchUrl, redirectUrl, smethod = 'POST') {
 
     let form = event.target;
     let formData = new FormData(form);
+    console.log(formData);
 
     fetch(fetchUrl, {
         method: smethod,
@@ -82,8 +83,20 @@ function addComment(event, fetchUrl, redirectUrl, smethod = 'POST') {
             if(redirectUrl != "#") {
                 window.location.href = redirectUrl;
             }
+            // let comments = [
+            //     {
+            //         "id": "1",
+            //         "name": "admin",
+            //         "comment": "\u0422\u0435\u0441\u0442 <p>sadasd<\/p>\r\n",
+            //         "article": "2",
+            //         "date": "6 \u0441\u0435\u043d\u0442\u044f\u0431\u0440\u044f 2023 \u0432 15:02"
+            //     }
+            // ]
+            // document.getElementById('comments-container').innerHTML += (Handlebars.compile(document.getElementById('comment_template').innerHTML))({ comments: comments });
             document.getElementById("alertBadge").innerHTML = data.message;
             showAlert(); 
+            document.getElementById("share_comment").disabled = true;
+            location.reload();
         } else {
             //document.getElementById("alertBadge").innerHTML = data.message + '<br>';
             for (let key in data.errors) {

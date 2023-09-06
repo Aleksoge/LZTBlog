@@ -16,6 +16,11 @@ if(!isset($article_id)) {
     }
 }
 
+
+if(R::count('comments', 'WHERE createdby = ? AND article = ?', [$authorized_user->id, (int)$article_id]) >= 3) {
+    $errors['comment'] = "Извините, вы не можете оставлять более трех комментариев на одну статью.";
+}
+
 if (!empty($errors)) {
     responseOutput(false, 'Ошибка, что-то пошло не так..', $errors);
 } else {
